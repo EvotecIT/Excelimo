@@ -1,12 +1,12 @@
-﻿Import-Module .\Excelimo.psd1 -Force
+﻿Import-Module 'C:\Users\przemyslaw.klys\OneDrive - Evotec\Support\GitHub\Excelimo\Excelimo.psd1' -Force
 Import-Module PSWriteExcel -Force
 
 $Process = Get-Process | Select-Object -First 5
 
 Excel -FilePath $PSScriptRoot\"Run-Demo01.xlsx" {
-    #WorkbookProperties -Title 'Test'
+    WorkbookProperties -Title 'Test'
     Worksheet -DataTable $Process -Name 'Processes'
-    <#
+
     Worksheet -DataTable $Process -Name 'Processes Test1' -TabColor Crimson
     Worksheet -DataTable $Process -Name 'Processes Test2' -TabColor BlueViolet
     Worksheet -DataTable $Process -Name 'Processes Test3' -TabColor Aquamarine
@@ -14,11 +14,12 @@ Excel -FilePath $PSScriptRoot\"Run-Demo01.xlsx" {
     Worksheet -DataTable $Process -Name 'Processes Test5' -TabColor Aquamarine
     Worksheet -DataTable $Process -Name 'Processes Test6' -TabColor Aquamarine
     Worksheet -DataTable $Process -Name 'Processes Test7' -TabColor Aquamarine
-    Worksheet -DataTable $Process -Name 'Processes Test8' -TabColor Aquamarine
+    Worksheet -DataTable $Process -Name 'Processes Test7' -TabColor Aquamarine
     Worksheet -DataTable $Process -Name 'Processes Test9' -TabColor Aquamarine
     Worksheet -DataTable $Process -Name 'Processes Test10' -TabColor Aquamarine
-    #>
+
+    for ($i = 0; $i -le 500; $i++) {
+        #Worksheet -DataTable $Process -Name "Processes Test $i" -TabColor BlanchedAlmond
+    }
+
 } -Verbose -Open -Parallel
-
-
-

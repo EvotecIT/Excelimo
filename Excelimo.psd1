@@ -51,7 +51,7 @@
     # ProcessorArchitecture = ''
 
     # Modules that must be imported into the global environment prior to importing this module
-    RequiredModules = @(@{ModuleName = 'PSWriteExcel'; GUID = '82232c6a-27f1-435d-a496-929f7221334b'; ModuleVersion = '0.1.0'; })
+    RequiredModules = @(@{ModuleName = 'PSWriteExcel'; GUID = '82232c6a-27f1-435d-a496-929f7221334b'; ModuleVersion = '0.1.1'; })
 
     # Assemblies that must be loaded prior to importing this module
     # RequiredAssemblies = @()
@@ -69,8 +69,7 @@
     # NestedModules = @()
 
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-    FunctionsToExport = 'Excel', 'Get-ASTCode', 'ConvertTo-ScriptBlock', 'WorkbookProperties', 
-    'Worksheet'
+    FunctionsToExport = 'Excel', 'WorkbookProperties', 'Worksheet'
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     CmdletsToExport = @()
@@ -106,7 +105,7 @@
             ProjectUri = 'https://github.com/EvotecIT/Excelimo'
 
             # A URL to an icon representing this module.
-            # IconUri = ''
+            IconUri = 'https://evotec.xyz/wp-content/uploads/2019/05/Excelimo.png'
 
             # ReleaseNotes of this module
             # ReleaseNotes = ''

@@ -19,24 +19,20 @@
 
     # We need to make sure some commands are executed in correct order, therefore we convert scriptblock into text, get the commands that we need to be executed last (Main)
     # and build ScriptBlock back
-    [Array] $Output = Get-ASTCode -ScriptBlock $Content
+    [Array] $Output = ConvertFrom-ScriptBlock -ScriptBlock $Content
     #Write-Verbose -Message $(Stop-TimeLog -time $Time -Continue)
-    $Main = ConvertTo-ScriptBlock -Code $Output -Include 'WorkbookProperties'
+    $WorkbookProperties = ConvertTo-ScriptBlock -Code $Output -Include 'WorkbookProperties'
     #Write-Verbose -Message $(Stop-TimeLog -time $Time -Continue)
-    $Worksheets = ConvertTo-ScriptBlock -Code $Output -Include 'Worksheet'
+    $Everything = ConvertTo-ScriptBlock -Code $Output -Exclude 'WorkbookProperties'
     #Write-Verbose -Message $(Stop-TimeLog -time $Time -Continue)
 
-    if ($Worksheets) {
-        foreach ($Worksheet in $Worksheets) {
-            Invoke-Command -ScriptBlock $Worksheet
-            Write-Verbose -Message "Excel WorkSheet - $(Stop-TimeLog -time $Time -Continue)"
-        }
+    if ($Everything) {
+        & $Everything
         $Script:Excel.Runspaces.End = Stop-Runspace -Runspaces  $Script:Excel.Runspaces.Runspaces -FunctionName "Excel" -RunspacePool $Script:RunspacesPool -Verbose:$Verbose -ErrorAction SilentlyContinue -ErrorVariable +AllErrors -ExtendedOutput:$ExtendedOutputF
-       # Write-Verbose -Message $(Stop-TimeLog -time $Time -Continue)
     }
-    if ($Main) {
-        Invoke-Command -ScriptBlock $Main
-       #Write-Verbose -Message $(Stop-TimeLog -time $Time -Continue)
+    if ($WorkbookProperties) {
+        & $WorkbookProperties
+        #Write-Verbose -Message $(Stop-TimeLog -time $Time -Continue)
         <#
         [Array] $Parameters = Invoke-Command -ScriptBlock $Main
         foreach ($Parameter in $Parameters) {
@@ -55,52 +51,4 @@
     Save-ExcelDocument -ExcelDocument $ExcelDocument -FilePath $FilePath -OpenWorkBook:$Open
     $Script:Excel = $null
     Write-Verbose "Excel - Time to create - $EndTime"
-}
-
-
-function Get-ASTCode {
-    [CmdletBinding()]
-    param(
-        [ScriptBlock] $ScriptBlock
-    )
-    [Array] $Output = $ScriptBlock.Ast.EndBlock.Statements.Extent
-    [Array] $OutputText = foreach ($Line in $Output) {
-        [string] $Line + [System.Environment]::NewLine
-    }
-    return $OutputText
-}
-
-function ConvertTo-ScriptBlock {
-    [CmdletBinding()]
-    param(
-        [Array] $Code,
-        [string[]] $Include,
-        [string[]] $Exclude
-    )
-    if ($Include) {
-        $Output = foreach ($Line in $Code) {
-            foreach ($I in $Include) {
-                if ($Line.StartsWith($I)) {
-                    $Line
-                }
-            }
-        }
-    }
-    if ($Exclude) {
-        $Output = foreach ($Line in $Code) {
-            $Tests = foreach ($E in $Exclude) {
-                if ($Line.StartsWith($E)) {
-                    $true
-                }
-            }
-            if ($Tests -notcontains $true) {
-                $Line
-            }
-        }
-    }
-    if ($Output) {
-        foreach ($Entry in $Output) {
-            [ScriptBlock]::Create($Entry)
-        }
-    }
 }

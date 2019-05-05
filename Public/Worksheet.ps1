@@ -1,20 +1,23 @@
 ﻿function Worksheet {
     [CmdletBinding()]
     param(
-        [parameter(DontShow)] $ExcelDocument,
         [Array] $DataTable,
         [string] $Name,
-        [ValidateSet("Replace", "Skip", "Rename")][string] $Option = 'Skip',
-        [RGBColors] $TabColor = [RGBColors]::None
+        [ValidateSet("Replace", "Skip", "Rename")][string] $Option = 'Replace',
+        [RGBColors] $TabColor = [RGBColors]::None,
+        [switch] $AutoFilter,
+        [switch] $AutoFit
     )
     $ScriptBlock = {
         Param (
-            $DataTable,
-            $TabColor,
-            $Supress,
-            $Option,
             $ExcelDocument,
-            $Name
+            [Array] $DataTable,
+            [string] $Name,
+            [ValidateSet("Replace", "Skip", "Rename")][string] $Option = 'Replace',
+            [RGBColors] $TabColor = [RGBColors]::None,
+            [bool] $Supress,
+            [switch] $AutoFilter,
+            [switch] $AutoFit
         )
         $addExcelWorkSheetDataSplat = @{
             DataTable          = $DataTable
@@ -23,8 +26,10 @@
             Option             = $Option
             ExcelDocument      = $ExcelDocument
             ExcelWorksheetName = $Name
+            AutoFit            = $AutoFit
+            AutoFilter         = $AutoFilter
         }
-        Add-ExcelWorkSheetData @addExcelWorkSheetDataSplat
+        Add-ExcelWorkSheetData @addExcelWorkSheetDataSplat -Verbose
     }
     $ExcelWorkSheetParameters = [ordered] @{
         DataTable     = $DataTable
@@ -33,6 +38,8 @@
         Option        = $Option
         ExcelDocument = $Script:Excel.ExcelDocument
         Name          = $Name
+        AutoFit       = $AutoFit
+        AutoFilter    = $AutoFilter
     }
 
     if ($Script:Excel.Runspaces.Parallel) {
