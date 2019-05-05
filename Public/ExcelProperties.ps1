@@ -1,4 +1,5 @@
 ﻿function WorkbookProperties {
+    [CmdletBinding()]
     param(
         [string] $Title,
         [string] $Subject,
@@ -68,7 +69,7 @@
         SharedDoc         = $SharedDoc
         Created           = $Created
         Category          = $Category
-        ExcelDocument     = $Script:ExcelDocument
+        ExcelDocument     = $Script:Excel.ExcelDocument
         Status            = $Status
         AppVersion        = $AppVersion
         Keywords          = $Keywords
