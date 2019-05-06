@@ -1,7 +1,5 @@
 ﻿Import-Module PSWinDocumentation.AD -Force
-Import-Module 'C:\Users\przemyslaw.klys\OneDrive - Evotec\Support\GitHub\PSWriteExcel\PSWriteExcel.psd1' -Force
 Import-Module 'C:\Users\przemyslaw.klys\OneDrive - Evotec\Support\GitHub\Excelimo\Excelimo.psd1' -Force
-Import-Module 'C:\Users\przemyslaw.klys\OneDrive - Evotec\Support\GitHub\PSSharedGoods\PSSharedGoods.psd1' -Force
 
 if ($null -eq $ADForest) {
     $ADForest = Get-WinADForestInformation -Verbose -PasswordQuality
