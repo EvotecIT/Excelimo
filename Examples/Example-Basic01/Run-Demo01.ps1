@@ -22,4 +22,4 @@ Excel -FilePath $PSScriptRoot\"Run-Demo01.xlsx" {
         #Worksheet -DataTable $Process -Name "Processes Test $i" -TabColor BlanchedAlmond
     }
 
-} -Verbose -Open -Parallel
+} -Verbose -Open
