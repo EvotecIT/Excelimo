@@ -13,9 +13,7 @@ Excel -FilePath $PSScriptRoot\"Run-Demo01.xlsx" {
         Worksheet -DataTable $ADForest.$Key -Name $Key -TabColor ([RGBColors]::BlueViolet) #-AutoFilter -AutoFit
 
     }
-
     foreach ($FoundDomains in $ADForest.FoundDomains) {
-
         foreach ($D in $ADForest.FoundDomains.Keys) {
             $Color++
             foreach ($Section in $ADForest.FoundDomains.$D.Keys) {
