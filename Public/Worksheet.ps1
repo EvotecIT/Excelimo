@@ -4,7 +4,7 @@
         [Array] $DataTable,
         [string] $Name,
         [ValidateSet("Replace", "Skip", "Rename")][string] $Option = 'Replace',
-        [RGBColors] $TabColor = [RGBColors]::None,
+        [string] $TabColor,
         [switch] $AutoFilter,
         [switch] $AutoFit
     )
@@ -29,7 +29,7 @@
             AutoFit            = $AutoFit
             AutoFilter         = $AutoFilter
         }
-        Add-ExcelWorkSheetData @addExcelWorkSheetDataSplat -Verbose
+        Add-ExcelWorksheetData @addExcelWorkSheetDataSplat -Verbose
     }
     $ExcelWorkSheetParameters = [ordered] @{
         DataTable     = $DataTable
@@ -49,3 +49,5 @@
         & $ScriptBlock -Parameters @ExcelWorkSheetParameters
     }
 }
+
+Register-ArgumentCompleter -CommandName Worksheet -ParameterName TabColor -ScriptBlock { $Script:RGBColors.Keys }
