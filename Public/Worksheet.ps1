@@ -14,7 +14,7 @@
             [Array] $DataTable,
             [string] $Name,
             [ValidateSet("Replace", "Skip", "Rename")][string] $Option = 'Replace',
-            [RGBColors] $TabColor = [RGBColors]::None,
+            [string] $TabColor,
             [bool] $Supress,
             [switch] $AutoFilter,
             [switch] $AutoFit

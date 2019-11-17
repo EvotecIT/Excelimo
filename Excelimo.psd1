@@ -12,7 +12,7 @@
     RootModule        = 'Excelimo.psm1'
 
     # Version number of this module.
-    ModuleVersion     = '0.0.3'
+    ModuleVersion     = '0.0.4'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -51,7 +51,7 @@
     # ProcessorArchitecture = ''
 
     # Modules that must be imported into the global environment prior to importing this module
-    RequiredModules   = @(@{ModuleName = 'PSWriteExcel'; GUID = '82232c6a-27f1-435d-a496-929f7221334b'; ModuleVersion = '0.1.3'; }, 
+    RequiredModules   = @(@{ModuleName = 'PSWriteExcel'; GUID = '82232c6a-27f1-435d-a496-929f7221334b'; ModuleVersion = '0.1.4'; }, 
         @{ModuleName = 'PSSharedGoods'; GUID = 'ee272aa8-baaa-4edf-9f45-b6d6f7d844fe'; ModuleVersion = '0.0.106'; })
 
     # Assemblies that must be loaded prior to importing this module

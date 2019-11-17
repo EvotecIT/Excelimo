@@ -10,7 +10,7 @@ Excel -FilePath $PSScriptRoot\"Run-Demo01.xlsx" {
     [int] $Color = 0
     WorkbookProperties -Title 'PSWinDocumentation - Active Directory Demo - Automated'
     foreach ($Key in $ADForest.Keys | Where-Object { $_ -notin 'FoundDomains', 'Domains', 'ForestName', 'ForestNameDN' }) {
-        Worksheet -DataTable $ADForest.$Key -Name $Key -TabColor ([RGBColors]::BlueViolet) #-AutoFilter -AutoFit
+        Worksheet -DataTable $ADForest.$Key -Name $Key -TabColor BlueViolet #-AutoFilter -AutoFit
 
     }
     foreach ($FoundDomains in $ADForest.FoundDomains) {
@@ -19,7 +19,7 @@ Excel -FilePath $PSScriptRoot\"Run-Demo01.xlsx" {
             foreach ($Section in $ADForest.FoundDomains.$D.Keys) {
                 $Name = "$Section - $D" -replace 'DomainPassword', '' -replace 'Domain', '' -replace 'Password', 'Pass'
                 $Number++
-                Worksheet -DataTable $ADForest.FoundDomains.$D.$Section -Name $Number #-TabColor ([RGBColors]::BlueViolet) #-AutoFilter -AutoFit -Verbose
+                Worksheet -DataTable $ADForest.FoundDomains.$D.$Section -Name $Number #-TabColor BlueViolet #-AutoFilter -AutoFit -Verbose
 
             }
         }
