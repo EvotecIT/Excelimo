@@ -25,8 +25,8 @@ This module allows to create Excel files from PowerShell using DSL syntax. Since
 This project is archived. For development go to https://github.com/EvotecIT/PSWriteExcel
 
 ```PowerShell
-Uninstall-Module Emailimo -AllVersions
-Install-Module PSWriteHTML -Force
+Uninstall-Module Excelimo -AllVersions
+Install-Module PSWriteExcel -Force
 ```
 
 ## Updates for archive purposes
