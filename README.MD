@@ -1,5 +1,4 @@
 ﻿<p align="center">
-  <a href="https://dev.azure.com/evotecpl/Excelimo/_build/latest?definitionId=3"><img src="https://dev.azure.com/evotecpl/Excelimo/_apis/build/status/EvotecIT.Excelimo"></a>
   <a href="https://www.powershellgallery.com/packages/Excelimo"><img src="https://img.shields.io/powershellgallery/v/Excelimo.svg"></a>
   <a href="https://www.powershellgallery.com/packages/Excelimo"><img src="https://img.shields.io/powershellgallery/vpre/Excelimo.svg?label=powershell%20gallery%20preview&colorB=yellow"></a>
   <a href="https://github.com/EvotecIT/Excelimo"><img src="https://img.shields.io/github/license/EvotecIT/Excelimo.svg"></a>
